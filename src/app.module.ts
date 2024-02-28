@@ -6,6 +6,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { BankController } from './bank/bank.controller';
 import { BankModule } from './bank/bank.module';
 import { Bank } from './bank/entity/bank.entities';
+import { TransactionController } from './transaction/transaction.controller';
+import { TransactionModule } from './transaction/transaction.module';
+import { Transaction } from './transaction/entity/transaction.entities';
 
 @Module({
   imports: [
@@ -19,15 +22,16 @@ import { Bank } from './bank/entity/bank.entities';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASS'),
         database: configService.get('DB_NAME'),
-        entities: [Bank],
+        entities: [Bank, Transaction],
         synchronize: true,
       
       }),
       inject: [ConfigService],
     }),
-    BankModule
+    BankModule,
+    TransactionModule
   ],
-  controllers: [AppController, BankController],
+  controllers: [AppController, BankController, TransactionController],
   providers: [AppService],
 })
 export class AppModule {}

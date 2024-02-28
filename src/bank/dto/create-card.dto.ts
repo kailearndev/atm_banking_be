@@ -1,7 +1,7 @@
 export class createCardDto {
   theme: string
-  cardNumber: string
+  cardNumber: number
   type: string
   cardHolder: string
-  balance: string
+  balance: number
 }
